@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Neelima ❤️ My Valentine</title>
+
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial;
+}
+
+.bg {
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    animation: moveBG 40s linear infinite;
+    z-index: -1;
+}
+
+.bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.35;
+}
+
+@keyframes moveBG {
+    from {transform: translate(0,0);}
+    to {transform: translate(-25%, -25%);}
+}
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.45);
+}
+
+.container {
+    position: relative;
+    color: white;
+    text-align: center;
+    top: 35%;
+}
+
+h1 {
+    font-size: 3em;
+    text-shadow: 0 0 20px pink;
+}
+
+button {
+    padding: 15px 40px;
+    font-size: 20px;
+    border: none;
+    border-radius: 30px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#yesBtn {
+    background: #ff2d55;
+    color: white;
+}
+
+#yesBtn:hover {
+    transform: scale(1.2);
+}
+
+#noBtn {
+    background: #333;
+    color: white;
+    position: absolute;
+}
+
+.message {
+    margin-top: 20px;
+    font-size: 2em;
+    display: none;
+}
+
+.heart {
+    position: absolute;
+    color: red;
+    animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+    from {transform: translateY(100vh);}
+    to {transform: translateY(-10vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg">
+<img src="pic1.jpg">
+<img src="pic2.jpg">
+<img src="pic3.jpeg">
+<img src="pic4.jpeg">
+<img src="pic5.jpeg">
+<img src="pic6.jpeg">
+<img src="pic7.jpg">
+<img src="pic8.jpeg">
+</div>
+
+<div class="overlay"></div>
+
+<div class="container">
+<h1>
+Neelima ❤️<br>
+Will You Be My Valentine?
+</h1>
+
+<button id="yesBtn">Yes 💖</button>
+<button id="noBtn">No 😜</button>
+
+<div id="msg" class="message">
+You make my life beautiful ❤️<br>
+I Love You Neelima 💞
+</div>
+</div>
+
+<audio autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const msg = document.getElementById("msg");
+
+function moveButton() {
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 80);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
+
+noBtn.addEventListener("mouseover", moveButton);
+
+yesBtn.addEventListener("click", () => {
+    msg.style.display = "block";
+    celebrate();
+});
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random()*20 + 20 + "px";
+    heart.style.animationDuration = Math.random()*3 + 3 + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+}
+
+setInterval(createHeart, 300);
+
+function celebrate() {
+    for (let i=0;i<40;i++){
+        setTimeout(createHeart, i*80);
+    }
+}
+</script>
+
+</body>
+</html>
